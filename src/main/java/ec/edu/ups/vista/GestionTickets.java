@@ -5,17 +5,59 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorVehiculo;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.dao.ClienteDAO;
+import ec.edu.ups.dao.TicketDAO;
+import ec.edu.ups.dao.VehiculoDAO;
+import ec.edu.ups.modelo.Cliente;
+import ec.edu.ups.modelo.Ticket;
+import ec.edu.ups.modelo.Vehiculo;
+import javax.swing.JDesktopPane;
+
 /**
  *
  * @author José Andrés Abad
  */
 public class GestionTickets extends javax.swing.JFrame {
 
+    //INSTANCIAS VISTA
+    private RegistroTicket ventanaRegistroTicket;
+    private RegistroVehiculoCliente ventanaRegistroVehiculoCliente;
+    
+    //INSTACIAS CONTROLADOR
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    private ControladorVehiculo controladorVehiculo;
+
+    //INSTANCIAS DAO
+    private ClienteDAO cDAO;
+    private TicketDAO tDAO;
+    private VehiculoDAO vDAO;
+    
+    //INSTACIAS MODELO
+    private Cliente c;
+    private Ticket t;
+    private Vehiculo v;
+    
     /**
      * Creates new form GestionTickets
      */
     public GestionTickets() {
         initComponents();
+                
+        cDAO = new ClienteDAO();
+        tDAO = new TicketDAO();
+        vDAO = new VehiculoDAO();
+        
+        controladorCliente = new ControladorCliente(cDAO,vDAO);
+        controladorTicket = new ControladorTicket(tDAO,cDAO,vDAO);
+        controladorVehiculo = new ControladorVehiculo(vDAO);
+        
+        ventanaRegistroTicket = new RegistroTicket(controladorTicket,controladorCliente,controladorVehiculo,this);
+        ventanaRegistroVehiculoCliente = new RegistroVehiculoCliente(controladorCliente,controladorVehiculo,this);       
+        
     }
 
     /**
@@ -30,18 +72,23 @@ public class GestionTickets extends javax.swing.JFrame {
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        saveMenuItem = new javax.swing.JMenuItem();
+        menuItemRegistrar = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
+        fileMenu.setText("Inicio");
 
-        saveMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Registrar Ticket");
-        fileMenu.add(saveMenuItem);
+        menuItemRegistrar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemRegistrar.setMnemonic('s');
+        menuItemRegistrar.setText("Registrar Ticket");
+        menuItemRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegistrarActionPerformed(evt);
+            }
+        });
+        fileMenu.add(menuItemRegistrar);
 
         exitMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         exitMenuItem.setMnemonic('x');
@@ -61,11 +108,11 @@ public class GestionTickets extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+            .addComponent(desktopPane, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
         );
 
         pack();
@@ -74,6 +121,11 @@ public class GestionTickets extends javax.swing.JFrame {
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
+
+    private void menuItemRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegistrarActionPerformed
+        desktopPane.add(ventanaRegistroTicket);
+        ventanaRegistroTicket.setVisible(true);
+    }//GEN-LAST:event_menuItemRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,7 +167,7 @@ public class GestionTickets extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenuItem menuItemRegistrar;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -87,6 +87,10 @@ public class Cliente {
         return this.v;
     }
 
+    
+    
+    //equals and hashCode
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -113,7 +117,7 @@ public class Cliente {
     }
 
    
-
+    //toString
     @Override
     public String toString() {
         return "Cliente{" + "cedula=" + cedula + ", nombre=" + nombre + ", direccion=" + direccion + ", telefono=" + telefono + '}';

@@ -15,7 +15,7 @@ import java.util.List;
 public interface IClienteDAO {
     
     public void create(Cliente c);
-    public Cliente read(String cedula);
+    public Cliente read(int cedula);
     public void update(Cliente c);
     public void delete(Cliente c);
     

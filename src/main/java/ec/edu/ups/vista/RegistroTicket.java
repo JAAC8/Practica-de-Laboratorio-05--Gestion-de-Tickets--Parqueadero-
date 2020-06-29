@@ -5,17 +5,29 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.controlador.ControladorTicket;
+import ec.edu.ups.controlador.ControladorVehiculo;
+
 /**
  *
  * @author José Andrés Abad
  */
 public class RegistroTicket extends javax.swing.JInternalFrame {
 
+    private GestionTickets ventanaGestionTickets;
+    private ControladorCliente controladorCliente;
+    private ControladorTicket controladorTicket;
+    
     /**
      * Creates new form RegistroTicket
      */
-    public RegistroTicket() {
+    public RegistroTicket(ControladorTicket controladorTicket,ControladorCliente controladorCliente,ControladorVehiculo controladorVehiculo,GestionTickets ventanaGestionTickets) {
         initComponents();
+        
+        this.controladorTicket = controladorTicket;
+        this.controladorCliente = controladorCliente;
+        this.ventanaGestionTickets = ventanaGestionTickets;
     }
 
     /**
@@ -27,21 +39,99 @@ public class RegistroTicket extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        lblNumeroTicket = new javax.swing.JLabel();
+        txtNumeroTicket = new javax.swing.JTextField();
+        btnRegistrarTicket = new javax.swing.JButton();
+        txtPlacaVehiculo = new javax.swing.JTextField();
+        lblPlacaVehiculo = new javax.swing.JLabel();
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        setClosable(true);
+        setVisible(true);
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registro de Ticket", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 14))); // NOI18N
+
+        lblNumeroTicket.setText("Número:");
+
+        btnRegistrarTicket.setText("Registrar");
+        btnRegistrarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarTicketActionPerformed(evt);
+            }
+        });
+
+        lblPlacaVehiculo.setText("Vehiculo (placa):");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(77, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblPlacaVehiculo)
+                            .addComponent(lblNumeroTicket))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtPlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegistrarTicket)
+                        .addGap(143, 143, 143))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumeroTicket)
+                            .addComponent(txtNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblPlacaVehiculo)
+                        .addComponent(txtPlacaVehiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addComponent(btnRegistrarTicket)
+                .addGap(43, 43, 43))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarTicketActionPerformed
+        
+    }//GEN-LAST:event_btnRegistrarTicketActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegistrarTicket;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblNumeroTicket;
+    private javax.swing.JLabel lblPlacaVehiculo;
+    private javax.swing.JTextField txtNumeroTicket;
+    private javax.swing.JTextField txtPlacaVehiculo;
     // End of variables declaration//GEN-END:variables
 }
